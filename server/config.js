@@ -2,6 +2,7 @@ module.exports = {
 	host: process.env.HOST || '127.0.0.1',
 	port: process.env.NODE_PORT || 20000,
 	wechat: {
+		baseUrl: 'https://api.weixin.qq.com/cgi-bin',
 		token: 'weixin',
 		appId: 'wx02bb1b1b7cd7cf97',
 		appSecret: 'efb662434af6458caa20f9c3d4ac9d35'

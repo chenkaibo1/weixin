@@ -3,9 +3,9 @@
  */
 const getRawBody = require('raw-body')
 const sha1 = require('sha1')
-const { parseXML } = require('./util')
+const util = require('./util')
 module.exports = (opts, reply) => {
-	return async (ctx) => {
+	return async (ctx, next) => {
 		const { token } = opts
 		const { signature, timestamp, nonce, echostr } = ctx.query
 		const str = [ token, timestamp, nonce ].sort().join('')
@@ -26,9 +26,17 @@ module.exports = (opts, reply) => {
 					limit: '1mb',
 					encoding: ctx.charset
 				})
-				const content = await parseXML(data)
+				// 解析xml
+				const content = await util.parseXML(data)
 				console.log(content)
+				// 将解析后的数据格式化为object
+				const message = util.formatMessage(content.xml)
+				const body = await reply(message)
+				// 将回复的内容封装成xml
+				const xml = util.tpl(body, message)
 				ctx.status = 200
+				ctx.type = 'application/xml'
+				ctx.body = xml
 			}
 		}
 	}

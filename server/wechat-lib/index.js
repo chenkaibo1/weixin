@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Req = require('../common/req')
-const { request } = new Req({ baseUrl: 'https://api.weixin.qq.com/cgi-bin', json: true })
+const config = require('../config')
+const { request } = new Req({ baseUrl: config.wechat.baseUrl, json: true })
 const api = require('./api.json')
 const Token = mongoose.model('Token')
 module.exports = class WeChat {
