@@ -1,3 +1,4 @@
+const sha1 = require('sha1')
 const xml2js = require('xml2js')
 const compiled = require('./tpl')
 /**
@@ -73,4 +74,54 @@ exports.tpl = (content, message) => {
 		fromUserName: message.ToUserName
 	}
 	return compiled(info)
+}
+function createNonce() {
+	return Math.random().toString(36).substr(2, 15)
+}
+
+function createTimestamp() {
+	return parseInt(new Date().getTime() / 1000, 0) + ''
+}
+// 排序组合
+function raw(args) {
+	let keys = Object.keys(args)
+	const newArgs = {}
+	let str = ''
+
+	keys = keys.sort()
+	keys.forEach((key) => {
+		newArgs[key.toLowerCase()] = args[key]
+	})
+
+	for (const k in newArgs) {
+		str += '&' + k + '=' + newArgs[k]
+	}
+
+	return str.substr(1)
+}
+// 签名算法
+function signIt(nonce, ticket, timestamp, url) {
+	const ret = {
+		jsapi_ticket: ticket,
+		nonceStr: nonce,
+		timestamp: timestamp,
+		url: url
+	}
+
+	const string = raw(ret)
+	const sha = sha1(string)
+
+	return sha
+}
+// 签名
+exports.sign = (ticket, url) => {
+	const nonce = createNonce()
+	const timestamp = createTimestamp()
+	const signature = signIt(nonce, ticket, timestamp, url)
+
+	return {
+		noncestr: nonce,
+		timestamp: timestamp,
+		signature: signature
+	}
 }

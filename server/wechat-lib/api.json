@@ -1,3 +1,4 @@
 {
-	"accessToken": "token?grant_type=client_credential"
+	"accessToken": "token?grant_type=client_credential",
+	"ticket": "ticket/getticket"
 }

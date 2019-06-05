@@ -13,7 +13,12 @@ module.exports = {
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 			{ hid: 'description', name: 'description', content: pkg.description }
 		],
-		link: [ { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' } ]
+		link: [ { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' } ],
+		script: [
+			{
+				src: 'http://res.wx.qq.com/open/js/jweixin-1.4.0.js'
+			}
+		]
 	},
 
 	/*

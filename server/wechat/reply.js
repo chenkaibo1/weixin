@@ -13,6 +13,18 @@ module.exports = async (message) => {
 				mediaId: message.MediaId
 			}
 			break
+		case 'voice':
+			content = {
+				type: 'voice',
+				mediaId: message.MediaId
+			}
+			break
+		case 'video':
+			content = {
+				type: 'video',
+				mediaId: message.MediaId
+			}
+			break
 		default:
 			content = tip
 			break

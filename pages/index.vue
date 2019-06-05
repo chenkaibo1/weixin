@@ -1,20 +1,13 @@
 <template>
   <section class="container">
     <div>
-      <logo />
-      <h1 class="title">
-        weixin
-      </h1>
-      <h2 class="subtitle">
-        Welcome to the iView + Nuxt.js template
-      </h2>
+      <logo/>
+      <h1 class="title">weixin</h1>
+      <h2 class="subtitle">Welcome to the iView + Nuxt.js template</h2>
+      <nuxt-link to="/test">test</nuxt-link>
       <div class="links">
-        <Button type="primary" target="_blank" to="https://nuxtjs.org/"
-          >Documentation</Button
-        >
-        <Button target="_blank" to="https://github.com/nuxt/nuxt.js"
-          >GitHub</Button
-        >
+        <Button type="primary" target="_blank" to="https://nuxtjs.org/">Documentation</Button>
+        <Button target="_blank" to="https://github.com/nuxt/nuxt.js">GitHub</Button>
         <Button target="_blank" to="https://www.iviewui.com/">iView</Button>
       </div>
     </div>

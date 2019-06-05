@@ -5,6 +5,6 @@ const wechatConfig = {
 	appSecret: config.wechat.appSecret
 }
 
-const wechat = new Wechat(wechatConfig)
-
-module.exports = wechat
+exports.getWechatInstance = () => {
+	return new Wechat(wechatConfig)
+}

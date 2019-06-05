@@ -4,6 +4,8 @@ const config = require('../config')
 const { request } = new Req({ baseUrl: config.wechat.baseUrl, json: true })
 const api = require('./api.json')
 const Token = mongoose.model('Token')
+const Ticket = mongoose.model('Ticket')
+const util = require('./util')
 module.exports = class WeChat {
 	constructor(opts) {
 		this.opts = Object.assign({}, opts)
@@ -54,6 +56,36 @@ module.exports = class WeChat {
 		return data
 	}
 	/**
+	 * 获取临时票据ticket
+	 * @param {*} token 
+	 */
+	async fetchTicket(token) {
+		let data = await Ticket.getTicket()
+
+		if (!this.isValidToken(data, 'ticket')) {
+			data = await this.updateTicket(token)
+		}
+
+		await this.saveTicket(data)
+
+		return data
+	}
+	/**
+	 * 更新临时票据
+	 * @param {*} token 
+	 */
+	async updateTicket(token) {
+		const url = api.ticket + '?access_token=' + token + '&type=jsapi'
+
+		const data = await this.request({ url: url })
+		const now = new Date().getTime()
+		const expiresIn = now + (data.expires_in - 20) * 1000
+
+		data.expires_in = expiresIn
+
+		return data
+	}
+	/**
    * 验证token 是否有效
    * @param {*} data
    * @param {*} name 
@@ -62,7 +94,6 @@ module.exports = class WeChat {
 		if (!data || !data[name] || !data.expires_in) {
 			return false
 		}
-
 		const expiresIn = data.expires_in
 		const now = new Date().getTime()
 
@@ -71,5 +102,14 @@ module.exports = class WeChat {
 		} else {
 			return false
 		}
+	}
+	uploadMaterial(token, type, material, permanent) {}
+	/**
+	 * 获取签名
+	 * @param {*} ticket 
+	 * @param {*} url 
+	 */
+	sign(ticket, url) {
+		return util.sign(ticket, url)
 	}
 }
