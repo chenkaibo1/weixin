@@ -103,7 +103,7 @@ function raw(args) {
 function signIt(nonce, ticket, timestamp, url) {
 	const ret = {
 		jsapi_ticket: ticket,
-		nonceStr: nonce,
+		noncestr: nonce,
 		timestamp: timestamp,
 		url: url
 	}
@@ -120,7 +120,7 @@ exports.sign = (ticket, url) => {
 	const signature = signIt(nonce, ticket, timestamp, url)
 
 	return {
-		noncestr: nonce,
+		nonceStr: nonce,
 		timestamp: timestamp,
 		signature: signature
 	}

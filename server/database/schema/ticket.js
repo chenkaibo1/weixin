@@ -33,25 +33,18 @@ Ticket.statics = {
 	},
 
 	async saveTicket(data) {
-		let ticket = await this.findOne({ name: 'ticket' }).exec()
+		const ticket = await this.findOne({ name: 'ticket' }).exec()
 		if (ticket) {
 			ticket.ticket = data.ticket
 			ticket.expires_in = data.expires_in
+			await ticket.save()
 		} else {
-			ticket = new Ticket({
+			await this.create({
 				name: 'ticket',
 				expires_in: data.expires_in,
 				ticket: data.ticket
 			})
 		}
-
-		try {
-			await ticket.save()
-		} catch (e) {
-			console.log('存储失败')
-			console.log(e)
-		}
-
 		return data
 	}
 }

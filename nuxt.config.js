@@ -29,12 +29,20 @@ module.exports = {
 	/*
    ** Global CSS
    */
-	css: [ 'iview/dist/styles/iview.css' ],
+	css: [
+		{
+			src: 'assets/scss/base.scss',
+			lang: 'scss?indentedSyntax=true'
+		},
+		{
+			src: 'iview/dist/styles/iview.css'
+		}
+	],
 
 	/*
    ** Plugins to load before mounting the App
    */
-	plugins: [ '@/plugins/iview' ],
+	plugins: [ '@/plugins/iview', '@/plugins/util' ],
 
 	/*
    ** Nuxt.js modules
@@ -50,12 +58,10 @@ module.exports = {
    */
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
+		proxy: true
 	},
 	proxy: {
-		'/weixin': {
-			target: 'http://127.0.0.1:20000'
-		},
-		'/api': {
+		'/api/': {
 			target: 'http://127.0.0.1:20000'
 		}
 	},

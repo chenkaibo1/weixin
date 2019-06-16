@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Req = require('../common/req')
 const config = require('../config')
-const { request } = new Req({ baseUrl: config.wechat.baseUrl, json: true })
-const api = require('./api.json')
+const req = new Req({ baseUrl: config.wechat.baseUrl })
+const { wechat } = require('./api.json')
 const Token = mongoose.model('Token')
 const Ticket = mongoose.model('Ticket')
 const util = require('./util')
@@ -11,6 +11,7 @@ module.exports = class WeChat {
 		this.opts = Object.assign({}, opts)
 		this.appID = opts.appID
 		this.appSecret = opts.appSecret
+		// 获取全局票据
 		this.fetchAccessToken()
 	}
 	/**
@@ -21,7 +22,7 @@ module.exports = class WeChat {
 		options = Object.assign({}, options)
 
 		try {
-			const response = await request(options)
+			const response = await req.req(options)
 			return response
 		} catch (error) {
 			console.error(error)
@@ -45,7 +46,7 @@ module.exports = class WeChat {
    * 更新token
    */
 	async updateAccessToken() {
-		const url = api.accessToken + '&appid=' + this.appID + '&secret=' + this.appSecret
+		const url = wechat.accessToken + '&appid=' + this.appID + '&secret=' + this.appSecret
 
 		const data = await this.request({ url: url })
 		const now = new Date().getTime()
@@ -66,7 +67,7 @@ module.exports = class WeChat {
 			data = await this.updateTicket(token)
 		}
 
-		await this.saveTicket(data)
+		await Ticket.saveTicket(data)
 
 		return data
 	}
@@ -75,7 +76,7 @@ module.exports = class WeChat {
 	 * @param {*} token 
 	 */
 	async updateTicket(token) {
-		const url = api.ticket + '?access_token=' + token + '&type=jsapi'
+		const url = wechat.ticket + '?access_token=' + token + '&type=jsapi'
 
 		const data = await this.request({ url: url })
 		const now = new Date().getTime()
@@ -103,6 +104,7 @@ module.exports = class WeChat {
 			return false
 		}
 	}
+
 	uploadMaterial(token, type, material, permanent) {}
 	/**
 	 * 获取签名

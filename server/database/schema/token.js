@@ -23,7 +23,7 @@ Token.pre('save', (next) => {
 	}
 	next()
 })
-Token.static = {
+Token.statics = {
 	async getAccessToken() {
 		try {
 			const token = await this.findOne({ name: 'access_token' }).lean().exec()
@@ -33,18 +33,18 @@ Token.static = {
 		}
 	},
 	async saveAccessToken(data) {
-		let token = await this.findOne({ name: 'access_token' }).lean().exec()
+		const token = await this.findOne({ name: 'access_token' }).exec()
 		if (token) {
 			token.access_token = data.access_token
 			token.expires_in = data.expires_in
+			await token.save()
 		} else {
-			token = new Token({
+			await this.create({
 				name: 'access_token',
 				expires_in: data.expires_in,
 				access_token: data.access_token
 			})
 		}
-		await token.save()
 		return data
 	}
 }

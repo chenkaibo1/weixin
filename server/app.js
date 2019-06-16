@@ -5,7 +5,6 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-const route = require('./middleware/route')
 const database = require('./middleware/database')
 // error handler
 onerror(app)
@@ -29,6 +28,7 @@ app.use(async (ctx, next) => {
 	console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 // use router
+const route = require('./middleware/route')
 route(app)
 // error-handling
 app.on('error', (err, ctx) => {

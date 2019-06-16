@@ -1,0 +1,152 @@
+@import '~assets/scss/mixin';
+@import '~assets/scss/color';
+@import '~assets/scss/var';
+
+.container {
+	@include border-box;
+	height: 100vh;
+	width: 100%;
+	@include y-scroll;
+	padding-bottom: $navHeight;
+	.house {
+		padding: 0 0 $spacing;
+		width: 100%;
+		@include x-scroll;
+
+		.house-content {
+			// margin-left: $spacing/2;
+			padding: $spacing;
+			width: 50%;
+			height: 220px;
+			float: left;
+			font-size: 0;
+
+			// &:first-child {
+			// 	margin-left: $spacing;
+			// }
+
+			.house-img-wrapper {
+				width: 100%;
+				box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+				overflow: hidden;
+
+				img {
+					width: 100%;
+					height: 100px;
+				}
+			}
+
+			.house-text {
+				width: 100%;
+				padding: $spacing/2 0;
+				@include font-dpr(10px);
+				@include border-box;
+				@include break-word;
+
+				.words {
+					font-size: 1.4em;
+					color: $grey-700;
+				}
+				.cname {
+					font-size: 1.5em;
+					color: $black;
+				}
+				.name {
+					font-size: 1.5em;
+					color: $grey-700;
+				}
+			}
+		}
+	}
+
+	.pov-characters {
+		width: 100%;
+		padding: 0 $spacing;
+		margin-bottom: $spacing;
+		background: $white;
+		@include border-box;
+
+		.title {
+			@include font-dpr(19px);
+			padding: $spacing 0;
+			border-top: 1px solid $grey-400;
+		}
+
+		.pov-character-wrapper {
+			width: 100%;
+			padding: 0 0 $spacing;
+			border-bottom: 1px solid $grey-400;
+			font-size: 0;
+
+			// .pov-character-content:nth-child(2n) {
+			// 	margin-left: 5%;
+			// }
+
+			.pov-character-content {
+				width: 47.5%;
+				height: 180px;
+				float: left;
+				@include break-word;
+				// display: inline-block;
+				margin-bottom: $spacing;
+
+				img {
+					width: 100%;
+					height: 100px;
+					box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+					margin-bottom: $spacing/3;
+				}
+
+				.pov-character-text {
+					@include font-dpr(10px);
+					// line-height: $spacing*1.1
+
+					.cname {
+						font-size: 1.5em;
+						color: $black;
+					}
+					.name {
+						font-size: 1.2em;
+						color: $grey-600;
+					}
+					.played-by {
+						font-size: 1.2em;
+						color: $grey-600;
+					}
+				}
+			}
+		}
+	}
+
+	.city {
+		padding: 0 $spacing $spacing;
+		@include border-box;
+		@include font-dpr(10px);
+		line-height: 2em;
+		// position: relative;
+
+		.city-title {
+			font-size: 1.9em;
+			padding-bottom: $spacing;
+		}
+
+		.city-bg {
+			position: absolute;
+			width: 100%;
+			z-index: 0;
+			top: 3rem;
+			opacity: .3;
+		}
+
+		.city-intro {
+			font-size: 1.6em;
+			color: $grey-800;
+		}
+
+		.city-item {
+			font-size: 1.45em;
+			color: $grey-700;
+			margin-top: $spacing*2;
+		}
+	}
+}

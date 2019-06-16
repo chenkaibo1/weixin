@@ -9,6 +9,12 @@
       "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceFolder}\\server\\bin\\www.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "img",
+      "program": "${workspaceFolder}\\server\\util\\image.js"
     }
   ]
 }
