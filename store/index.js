@@ -9,12 +9,10 @@ export const state = () => {
 		APICharacters: null,
 		IMDb: null,
 		authUser: null,
-		shoppingScroll: 0,
 		houses: [],
 		characters: [],
 		focusCharacter: {},
 		user: null,
-		products: [],
 		focusProduct: {},
 		payments: []
 	}
@@ -46,6 +44,17 @@ export const mutations = {
 }
 
 export const actions = {
+	nuxtServerInit({ commit }, { req }) {
+		if (req.session && req.session.user) {
+			const { email, nickname, avatarUrl } = req.session.user
+			const user = {
+				email,
+				nickname,
+				avatarUrl
+			}
+			commit('user/SET_USER', user)
+		}
+	},
 	async fetchHouses({ commit }) {
 		try {
 			const res = await service.allHouses()

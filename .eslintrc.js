@@ -16,6 +16,7 @@ module.exports = {
 		'no-var': 'off',
 		'require-await': 'off',
 		'vue/attributes-order': 'off',
-		'no-lonely-if': 'off'
+		'no-lonely-if': 'off',
+		'vue/order-in-components': 'off'
 	}
 }

@@ -1,4 +1,4 @@
-import { get } from '../util/http'
+import { get, post } from '../util/http'
 /**
  * 查询所有家族
  * @return {Promise}
@@ -34,4 +34,34 @@ export const getCharacter = (id) => {
 		url: `/wiki/character/${id}`
 	}
 	return get(params)
+}
+
+export const getProducts = () => {
+	const params = {
+		url: '/shopping/products'
+	}
+	return get(params)
+}
+
+export const getPayments = () => {
+	const params = {
+		url: '/user/payments'
+	}
+	return get(params)
+}
+
+export const login = (user) => {
+	const params = {
+		url: '/user/login',
+		body: user
+	}
+	return post(params)
+}
+
+export const graphql = (body) => {
+	const params = {
+		url: '/graphql',
+		body
+	}
+	return post(params)
 }

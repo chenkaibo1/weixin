@@ -5,6 +5,7 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const session = require('koa-session')
 const database = require('./middleware/database')
 // error handler
 onerror(app)
@@ -20,6 +21,18 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(path.resolve(__dirname, './public')))
 
+// use session
+app.keys = [ 'got' ]
+
+const CONFIG = {
+	key: 'koa:sess',
+	maxAge: 86400000,
+	overwrite: true,
+	signed: true,
+	rolling: false
+}
+
+app.use(session(CONFIG, app))
 // logger
 app.use(async (ctx, next) => {
 	const start = new Date()

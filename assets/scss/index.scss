@@ -4,9 +4,9 @@
 
 .container {
 	@include border-box;
-	height: 100vh;
-	width: 100%;
-	@include y-scroll;
+	// height: 100vh;
+	// width: 100%;
+	// @include y-scroll;
 	padding-bottom: $navHeight;
 	.house {
 		padding: 0 0 $spacing;

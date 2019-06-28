@@ -1,0 +1,73 @@
+@import '~assets/scss/mixin';
+@import '~assets/scss/color';
+@import '~assets/scss/var';
+
+.container {
+	@include border-box;
+	padding-bottom: $navHeight;
+
+	.shopping {
+		background-color: $grey-200;
+
+		> * {
+			width: 100%;
+			background-color: $white;
+		}
+
+		.shopping-title {
+			@include font-dpr(18px);
+			text-align: center;
+			margin-bottom: $spacing;
+			padding: $spacing/2 0;
+		}
+
+		.shopping-list {
+			@include border-box;
+			padding-bottom: $spacing*3;
+
+			.shopping-item {
+				width: 100%;
+				// height: 5rem
+				// max-height: 300px
+				font-size: 0;
+				overflow: hidden;
+				border-bottom: 2px solid $grey-200;
+
+				img {
+					width: 40%;
+				}
+
+				.shopping-item-body {
+					width: 60%;
+					height: 100%;
+					float: right;
+					@include display-flex;
+					@include flex-column;
+					-webkit-box-pack: center;
+					-ms-flex-pack: center;
+					justify-content: center;
+					@include border-box;
+					padding: $spacing/2 $spacing 0;
+					@include font-dpr(10px);
+
+					.title {
+						font-size: 1.8em;
+						line-height: 1.7em;
+						@include text-overflow;
+					}
+					.content {
+						font-size: 1.3em;
+						line-height: 1.3em;
+						color: $grey-600;
+					}
+					.footer {
+						text-align: right;
+						height: 1em;
+						font-size: 2em;
+						color: $blue;
+					}
+				}
+			}
+		}
+	}
+}

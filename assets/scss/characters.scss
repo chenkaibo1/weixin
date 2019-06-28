@@ -2,9 +2,6 @@
 @import '~assets/scss/color';
 @import '~assets/scss/var';
 .container {
-	width: 100%;
-	height: 100vh;
-	@include y-scroll;
 	.focusCharacters-header {
 		position: relative;
 		height: 8rem;

@@ -1,0 +1,65 @@
+@import '~assets/scss/var';
+@import '~assets/scss/color';
+@import '~assets/scss/mixin';
+
+$iconSize: 30px;
+
+#nav {
+	width: 100%;
+	line-height: $navHeight;
+	height: $navHeight;
+	background-color: $grey-100;
+	@include border-box;
+	border-top: 1px solid $grey-400;
+	display: flex;
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	text-align: center;
+	font-size: 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	a {
+		border-right: 1px solid #ccc;
+		&:last-child {
+			border-right: none;
+		}
+	}
+	> * {
+		height: 100%;
+		@include font-dpr(14px);
+		color: #565656;
+		display: block;
+		flex: 1;
+		-webkit-flex: 1;
+		-webkit-box-flex: 1;
+		-ms-flex: 1;
+		display: flex;
+		display: -webkit-flex;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		text-decoration: none;
+
+		> div {
+			@include size-dpr($iconSize, width, height);
+			margin: auto;
+
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+	.nuxt-link-exact-active {
+		color: #5aaca5;
+	}
+}

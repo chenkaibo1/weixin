@@ -37,7 +37,7 @@
     </div>
     <div class="city">
       <div class="city-title">维斯特洛</div>
-      <img src="http://oqncgivnd.bkt.clouddn.com/map/bg2.png" class="city-bg">
+      <!-- <img src="http://oqncgivnd.bkt.clouddn.com/map/bg2.png" class="city-bg"> -->
       <div
         class="city-intro"
       >坐落于已知世界的最西端，狭长的维斯特洛大陆由北部的极地冰盖起向南延绵约3,000英里。绝境长城是一座巍峨挺立的不可逾越之物，横跨300英里，将最北的塞外地区与七大王国相互分离。一个统一的政治实体领导着南方的广阔土地，并形成九块相互联系又相互割据的区域。</div>
@@ -52,6 +52,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  middleware: 'auth',
   components: {},
   head() {
     return {

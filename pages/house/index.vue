@@ -40,7 +40,7 @@
 import { mapState } from 'vuex'
 
 export default {
-  // middleware: 'wechat-auth',
+  middleware: 'auth',
   transition: {
     name: 'slide-left'
   },

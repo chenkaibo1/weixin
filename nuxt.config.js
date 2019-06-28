@@ -31,8 +31,8 @@ module.exports = {
    */
 	css: [
 		{
-			src: 'assets/scss/base.scss',
-			lang: 'scss?indentedSyntax=true'
+			src: '@/assets/scss/base.scss'
+			// lang: 'scss?indentedSyntax=true'
 		},
 		{
 			src: 'iview/dist/styles/iview.css'

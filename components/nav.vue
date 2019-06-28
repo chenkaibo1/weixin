@@ -1,16 +1,20 @@
-<template lang="pug">
-  nav#nav(v-if='navVisible')
-    nuxt-link(v-for='(item, index) in navList' :to='item.path' :key='index')
-      div(v-if='index === 0')
-        img(v-if='activeRoute !== item.name' src='~static/images/home.png')
-        img(v-else src='~static/images/home-selected.png')
-      div(v-else-if='index === 1')
-        img(v-if='activeRoute !== item.name' src='~static/images/shopping.png')
-        img(v-else src='~static/images/shopping-selected.png')
-      div(v-else)
-        img(v-if='activeRoute !== item.name' src='~static/images/user.png')
-        img(v-else src='~static/images/user-selected.png')
-      p {{ item.text }}
+<template>
+  <div id="nav">
+    <nuxt-link v-for="(item, index) in navList" :key="index" :to="item.path">
+      <div v-if="index === 0">
+        <img v-if="activeRoute !== item.name" src="/web/home.png">
+        <img v-else src="/web/home-selected.png">
+      </div>
+      <div v-else-if="index ===1">
+        <img v-if="activeRoute !== item.name" src="/web/shopping.png">
+        <img v-else src="/web/shopping-selected.png">
+      </div>
+      <div v-else>
+        <img v-if="activeRoute !== item.name" src="/web/user.png">
+        <img v-else src="/web/user-selected.png">
+      </div>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -47,4 +51,6 @@ export default {
 }
 </script>
 
-<style lang="sass" src='~static/sass/nav.sass'></style>
+<style lang="scss" scoped>
+@import '~assets/scss/nav.scss';
+</style>
