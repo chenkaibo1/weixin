@@ -28,7 +28,7 @@
     "graphql-server-koa": "^1.4.0",
     "iview": "3.1.5",
     "koa": "^2.6.2",
-    "koa-bodyparser": "^3.2.0",
+    "koa-bodyparser": "^4.3.0",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^2.0.1",
